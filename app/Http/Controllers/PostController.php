@@ -29,7 +29,7 @@ class PostController extends Controller
     {
 
 
-        $posts = Post::latest()->where("user_id", $id)->with("user")->withCount(["comments"])->paginate(20);
+        $posts = Post::latest()->where("user_id", $id)->with("user")->withCount(["comments"])->paginate(10);
         $posts->each(function (&$post) {
             $postLikeinstance = new PostLikeController();
             $post->like = $postLikeinstance->show($post->id);

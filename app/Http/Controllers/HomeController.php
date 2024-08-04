@@ -19,7 +19,7 @@ class HomeController extends Controller
     public function index()
     {
 
-        $posts = Post::latest()->with('user')->withCount(["comments"])->paginate(20);
+        $posts = Post::latest()->with('user')->withCount(["comments"])->paginate(3);
         $posts->each(function (&$post) {
             $postLikeinstance = new PostLikeController();
             $post->like = $postLikeinstance->show($post->id);

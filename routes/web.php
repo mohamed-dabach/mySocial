@@ -21,12 +21,12 @@ Route::controller(HomeController::class)->group(function () {
     Route::get("/", "index")->name("home");
 });
 
-Route::controller([UserController::class])->group([
+Route::group([
     "middleware" => 'auth',
     "prefix" => 'user'
 ], function () {
-    Route::get("/{id}/", ['index'])->name("user.index");
-    Route::put("", ["update"])->name("user.update");
+    Route::get("/{id}/", [UserController::class, 'index'])->name("user.index");
+    Route::put("", [UserController::class, "update"])->name("user.update");
 });
 
 
